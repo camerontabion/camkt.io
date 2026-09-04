@@ -53,11 +53,7 @@ export default function Projects() {
   return (
     <Section id="projects" ariaLabelledBy="projects-heading">
       <Reveal>
-        <Heading
-          eyebrow="Selected work"
-          title="Projects"
-          id="projects-heading"
-        />
+        <Heading title="Projects" id="projects-heading" />
       </Reveal>
       <div className="flex flex-col gap-6">
         {featured.map((project) => (
@@ -190,9 +186,6 @@ const FeaturedCard = ({ project }: { project: Project }) => (
       className="h-56 w-full md:h-full md:min-h-[16rem]"
     />
     <div className="flex flex-col justify-center gap-4 md:pr-2">
-      <span className="w-fit font-display text-base text-primary-soft italic">
-        Featured project
-      </span>
       <ProjectTitle project={project} />
       <p className="text-base text-muted leading-relaxed">
         {project.description}

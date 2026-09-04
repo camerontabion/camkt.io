@@ -137,7 +137,7 @@ export default function Skills() {
   return (
     <Section id="skills" ariaLabelledBy="skills-heading">
       <Reveal>
-        <Heading eyebrow="Toolkit" title="Skills" id="skills-heading" />
+        <Heading title="Skills" id="skills-heading" />
       </Reveal>
       <div className="flex flex-col gap-8">
         {groups.map((group) => (
