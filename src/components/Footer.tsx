@@ -7,7 +7,7 @@ export default function Footer() {
       <Logo className="h-8 w-auto text-foreground/80" />
       <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-muted text-xs">
         <Star className="size-3 text-primary-soft" />
-        Open to full-time roles · Freelance &amp; contract
+        Looking for full-time work · freelance &amp; contract
       </p>
       <p className="text-muted text-xs">
         &copy; {new Date().getFullYear()} Cameron Keokolo Tabion
