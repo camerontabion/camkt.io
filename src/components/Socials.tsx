@@ -1,6 +1,6 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import { CheckIcon, FileTextIcon, MailIcon } from "lucide-react";
-import { CONTACT_EMAIL, RESUME_URL } from "~/constants/contact";
+import { CheckIcon, MailIcon } from "lucide-react";
+import { CONTACT_EMAIL } from "~/constants/contact";
 import { cn } from "~/utils/cn";
 
 interface SocialsProps {
@@ -21,21 +21,7 @@ export const Socials = ({
     <EmailButton isCopied={isCopied} copyToClipboard={copyToClipboard} />
     <LinkedInButton />
     <GithubButton />
-    <ResumeButton />
   </div>
-);
-
-export const ResumeButton = () => (
-  <a
-    href={RESUME_URL}
-    target="_blank"
-    rel="noreferrer"
-    aria-label="View Cameron Tabion's resume (PDF)"
-    title="Resume"
-    className={buttonBase}
-  >
-    <FileTextIcon className="size-5" />
-  </a>
 );
 
 interface EmailButtonProps {

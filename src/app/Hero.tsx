@@ -1,10 +1,10 @@
 import { ChevronDown } from "lucide-react";
 import { Card } from "~/components/Card";
-import { Logo } from "~/components/Logo";
 import { Socials } from "~/components/Socials";
 import { StarField } from "~/components/Star";
 import { CONTACT_EMAIL } from "~/constants/contact";
 import useCopyToClipboard from "~/hooks/useCopyToClipboard";
+import { cn } from "~/utils/cn";
 
 export default function Hero() {
   const { isCopied, copyToClipboard } = useCopyToClipboard();
@@ -13,26 +13,26 @@ export default function Hero() {
     <section className="mx-auto w-full max-w-5xl animate-reveal">
       <Card
         interactive={false}
-        className="relative overflow-hidden p-6 sm:p-8 md:p-12"
+        bareOnMobile
+        className="relative overflow-hidden p-6 max-sm:overflow-visible max-sm:px-0 max-sm:pt-8 max-sm:pb-0 sm:p-8 md:p-12"
       >
-        <div className="-top-24 -right-16 pointer-events-none absolute size-72 rounded-full bg-primary/15 blur-[100px]" />
+        <div className="-top-24 -right-16 pointer-events-none absolute size-72 rounded-full bg-primary/15 blur-[100px] max-sm:hidden" />
         <StarField />
         <div className="relative grid items-center gap-8 md:grid-cols-[1fr_auto] md:gap-10">
-          <div className="flex flex-col gap-7">
-            <div className="flex flex-wrap items-center gap-4">
-              <Logo className="h-9 w-auto animate-float text-foreground/90 motion-reduce:animate-none" />
-              <StatusPill />
-            </div>
-            <div className="flex flex-col gap-5">
-              <p className="font-display text-lg text-primary-soft italic">
-                Full stack engineer who likes building useful things.
-              </p>
-              <h1 className="font-display font-medium text-4xl text-foreground leading-[1.05] tracking-tight sm:text-5xl sm:leading-[1.02] md:text-6xl">
-                Cameron Keokolo Tabion
-              </h1>
-              <About copyToClipboard={copyToClipboard} />
-            </div>
-            <div className="flex flex-wrap items-center gap-4">
+          {/* One flat column so mobile can reorder; `sm:mt-2` on the socials
+              row keeps the wider group gap the old nested layout had. */}
+          <div className="flex flex-col gap-5 max-sm:gap-6">
+            <p className="font-display text-lg text-primary-soft italic max-sm:order-2">
+              Full stack engineer who builds web and mobile apps with care.
+            </p>
+            <h1 className="font-display font-medium text-4xl text-foreground leading-[1.05] tracking-tight max-sm:order-1 sm:text-5xl sm:leading-[1.02] md:text-6xl">
+              Cameron Keokolo Tabion
+            </h1>
+            <About
+              className="max-sm:order-3"
+              copyToClipboard={copyToClipboard}
+            />
+            <div className="flex flex-wrap items-center gap-4 max-sm:order-4 sm:mt-2">
               <Socials isCopied={isCopied} copyToClipboard={copyToClipboard} />
             </div>
           </div>
@@ -74,24 +74,14 @@ const Portrait = () => (
   </div>
 );
 
-const StatusPill = () => (
-  <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-foreground/80 text-xs">
-    <span className="relative flex size-2">
-      <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
-      <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
-    </span>
-    Available for work
-  </span>
-);
-
 interface AboutProps {
   copyToClipboard: (text: string) => void;
+  className?: string;
 }
 
-const About = ({ copyToClipboard }: AboutProps) => (
-  <p className="max-w-xl text-base text-muted leading-relaxed">
-    I design and build web and mobile apps that are fast, clean, and easy to
-    use. Currently up for full-time work and the odd freelance project—find me
+const About = ({ copyToClipboard, className }: AboutProps) => (
+  <p className={cn("max-w-xl text-base text-muted leading-relaxed", className)}>
+    Currently looking for full-time work and the odd freelance project—find me
     at{" "}
     <button
       type="button"

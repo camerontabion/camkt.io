@@ -55,13 +55,13 @@ export default function Projects() {
       <Reveal>
         <Heading title="Projects" id="projects-heading" />
       </Reveal>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 max-sm:gap-10">
         {featured.map((project) => (
           <Reveal key={project.name}>
             <FeaturedCard project={project} />
           </Reveal>
         ))}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 max-sm:gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((project, i) => (
             <Reveal key={project.name} delay={i * 70}>
               <ProjectCard project={project} />
@@ -161,14 +161,17 @@ const ProjectTitle = ({ project }: { project: Project }) => (
 );
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <Card className="group flex h-full flex-col gap-4 p-4">
+  <Card
+    bareOnMobile
+    className="group flex h-full flex-col gap-4 p-4 max-sm:p-0"
+  >
     <ProjectThumb
       image={project.image}
       name={project.name}
       link={project.link}
       className="h-44 w-full"
     />
-    <div className="flex flex-col gap-2 px-1 pb-1">
+    <div className="flex flex-col gap-2 px-1 pb-1 max-sm:px-0 max-sm:pb-0">
       <ProjectTitle project={project} />
       <p className="text-muted text-sm leading-relaxed">
         {project.description}
@@ -178,7 +181,10 @@ const ProjectCard = ({ project }: { project: Project }) => (
 );
 
 const FeaturedCard = ({ project }: { project: Project }) => (
-  <Card className="group grid gap-6 p-5 md:grid-cols-2 md:p-6">
+  <Card
+    bareOnMobile
+    className="group grid gap-6 p-5 max-sm:p-0 md:grid-cols-2 md:p-6"
+  >
     <ProjectThumb
       image={project.image}
       name={project.name}
